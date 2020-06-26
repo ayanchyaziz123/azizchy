@@ -186,7 +186,7 @@
 
 
                             <a href="{% url 'readMore' post.postId %}">
-                                <p  style="margin-left:90px;" >
+                                <p  style="margin-left:90px; "  class="text-style">
                                     {{ post.postTitle |truncatewords:2 }}
                                 </p>
                             </a>
@@ -224,7 +224,7 @@
                         <div class="mt-3 text-center">
                              {% for cat in Categories%}
 
-                            <a href="#"> {{cat.category}} </a><br>
+                            <a class="text-style" href="#"> {{cat.category}} </a><br>
                             
 
                          
