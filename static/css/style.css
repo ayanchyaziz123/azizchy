@@ -1,0 +1,28 @@
+#heading{
+	font-family:bitter,georgia,"times new roman",times,serif;
+	font-weight:bold;
+	color:#2F4F4F;
+}
+
+#heading:hover{
+    color:#A9A9A9;
+    transition:all 0.4s ease-in-out;
+}
+
+.time{
+	color:#868686;
+	font-weight:bold;
+}
+.post-time{
+	color:#868686;
+	font-weight:bold;
+}
+
+.description{
+	color:#868686;
+	fon-weight:bold;
+	margin-top:-2px;
+}
+#active{
+    color: black;
+}

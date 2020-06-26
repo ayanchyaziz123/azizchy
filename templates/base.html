@@ -1,0 +1,250 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{% static 'css/style.css' %} ">
+
+    <style>
+              .row-setting{
+    margin:80px 0px !important;
+
+}
+.imgsetting{
+border-radius: 40%;
+height: 90px;
+width: 90px;
+
+
+}
+   </style>
+
+</head>
+<body style="background-color:#F5F5F5">
+
+
+<div class="jumbotron" style="margin-bottom:0;">
+  <a href="{% url 'home' %}" style="text-decoration: none;"><h1 class="display-3 text-center" id="heading">Ayan Blogs</h1></a>
+  <p class="lead text-center">A website for learning</p>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <div class="container">
+  
+ <a class="navbar-brand" href="{% url 'home' %}"><i class="fa fa-leanpub" aria-hidden="true"></i> AB</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+     <li class="nav-item" >
+
+       <a  class="nav-link" href="{% url 'home' %}" 
+       id="{% block homeActive %}{% endblock homeActive %}"><i class="fa fa-fw fa-home"></i>Home</a>
+     
+     </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="{% url 'blog' %}" id="{% block blogActive %}{% endblock blogActive %}"><i class="fa fa-fw fa-rss" aria-hidden="true"></i>Blog</a>
+      </li>
+      <li class="nav-item">
+       <a class="nav-link" href="{% url 'contact' %}" id="{% block contactActive %}{% endblock contactActive %}"><i class="fa fa-fw fa-envelope"></i>Contact</a>
+      </li>
+
+      {% if user.is_authenticated %}
+
+
+                        <li class="nav-item dropdown  ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="fa fa-user" aria-hidden="true"></i> welcome {{request.user.username}} 
+                        </a>
+                        <div class="dropdown-menu edit-dropdown " aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="#"><i class="fa fa-eye" aria-hidden="true"></i> View Profile</a>
+                               <a class="dropdown-item" href="{% url 'userLogOut' %}"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+
+                        </div>
+                    </li>
+
+
+
+                    {% else %}
+
+      <li class="nav-item">
+       <a class="nav-link" href="#"  data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-user"></i> Login</a>
+      </li>
+      
+      {% endif %}
+      
+      
+ <!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">LogIn here</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+
+        <form action="{% url 'userLogIn' %}" method="post">
+
+          <div class="form-group">
+  <label for="usrN">email:</label>
+  <input type="email" class="form-control" name="email" id="usrN">
+</div>
+<div class="form-group">
+  <label for="pwd">Password:</label>
+  <input type="password" class="form-control" name="pass" id="pwd">
+</div>
+
+
+
+
+      <div class="modal-footer">
+        <a  class="btn btn-success"  href="{% url 'userSignUp' %}">Sign Up</a>
+         {% csrf_token %}
+        <button type="submit" class="btn btn-success">Log In</button>
+      </div>
+
+        </form>
+
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0" method="get" action="{% url 'search' %}">
+      <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-success my-2 my-sm-0" type="submit"><i class="fa fa-fw fa-search"></i></button>
+      {% csrf_token %}
+    </form>
+  </div>
+  </div>
+</nav>
+<br>
+
+
+
+<!--show message-->
+
+
+{% for message in messages %}
+
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+  <strong>Message : </strong> {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+ {% endfor %}
+
+<div class="container mt-5 mb-5">
+     {% block body %}
+     {% endblock body %}
+
+
+
+     <div style="margin-top:300px">
+
+ </div>
+
+
+
+
+     <!--row 2 -->
+     <div style="margin-top:200px">
+
+     </div>
+   <h1 style="text-align:center; font-weight:bold;" id="heading">Services</h1>
+<div class="row  text-center row-setting">
+    <div class="col-sm-4 col-md-4 d-block m-auto">
+        <div class="imgsetting d-block m-auto bg-success">
+            <i class="fa fa-id-card fa-3x text-white mt-4"></i>
+
+        </div>
+
+         <h2 id="heading">Information</h2>
+                <p>
+                    through this website you will get all information of MU cse44th
+                </p>
+
+
+    </div>
+
+     <div class="col-sm-4">
+         <div class="imgsetting d-block m-auto bg-success">
+            <i class="fa fa-keyboard-o fa-3x text-white mt-4"></i>
+
+        </div>
+
+         <h2 id="heading">Learning</h2>
+                <p>
+                    You can learn through this website
+                </p>
+
+
+    </div>
+
+     <div class="col-sm-4">
+        <div class="imgsetting d-block m-auto bg-success">
+            <i class="fa fa-stack-exchange fa-3x text-white mt-4"></i>
+
+        </div>
+
+         <h2 id="heading">Sharing</h2>
+                <p>
+                    You can share your idea through this website
+                </p>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</div>
+<!--footer-->
+
+
+
+<div class="jumbotron " style="margin-bottom:0;">
+    <h5 class="display-5 text-center">Jumbo heading</h5>
+    <p class="lead text-center">W3Schools is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. While using this site, you agree to have read and accepted our terms of use, cookie and privacy policy.
+Copyright 1999-2020 by Refsnes Data. All Rights Reserved.</p>
+    <hr class="my-2">
+    
+</div>
+
+
+
+
+
+</body>
+</html>
