@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post, Category, Contact
+from django.shortcuts import redirect
+from .models import Post, Category, Contact, BlogComment
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.contrib import messages
@@ -41,10 +42,11 @@ def readMore(request, slug):
     Recent = Post.objects.all().order_by('-postTimeDate')[0:3]
     post = Post.objects.filter(postId=slug).first()
     cat = Category.objects.all()[0:3]
-
+    comment = BlogComment.objects.filter(post=post) 
     context = {'post': post,
                'RecentPost': Recent,
-               'Categories': cat,}
+               'Categories': cat,
+                'comments': comment,}
    
     return render(request, 'readMore.html', context)
 
@@ -109,3 +111,23 @@ def contactUs(request):
     return render(request, 'contact.html', context)
 
 
+def postComment(request):
+    if request.method=='POST':
+        comment = request.POST.get("comment")
+        user = request.user
+        postSno = request.POST.get("postSno")
+        post = Post.objects.get(postId=postSno)
+        parentSno = request.POST.get("parentSno")
+        if parentSno == "":
+           comment = BlogComment(comment=comment, user=user, post=post)
+        else :
+            parent = BlogComment.objects.get(sno=parentSno)
+            comment =  BlogComment(comment=comment, user=user, post=post, parent=parent)
+            messages.success(request, "your reply added successfully") 
+        comment.save()
+        messages.success(request, "your comment added successfully")
+    else:
+         messages.error(request, "your comment was not added successfully")
+        
+
+    return redirect("home")

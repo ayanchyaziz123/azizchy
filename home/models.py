@@ -1,6 +1,8 @@
 from django.db import models
 from django import forms
 from PIL import Image
+from user.models import Account
+from django.utils.timezone import now
 
 
 # Create your models here.
@@ -17,6 +19,7 @@ class Post(models.Model):
     postAuthor = models.CharField(max_length=200)
     postId = models.AutoField(primary_key=True, auto_created=True)
     postTitle = models.CharField(max_length=200)
+    post_title_without_space = models.CharField(max_length=200)
     postTimeDate = models.DateTimeField(auto_now_add=True, auto_now=False, blank=True)
     postInC = models.TextField()
     postInCplus = models.TextField()
@@ -53,3 +56,12 @@ class Contact(models.Model):
 
     def __str__(self):
         return 'Message From: ' + self.Name + ' Email address : ' +self.Email
+
+
+class BlogComment(models.Model):
+    sno = models.AutoField(primary_key=True)
+    comment = models.TextField()
+    user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True)
+    timestamp = models.DateTimeField(default=now)
