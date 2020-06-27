@@ -21,6 +21,7 @@ class Post(models.Model):
     postInC = models.TextField()
     postInCplus = models.TextField()
     postInPython = models.TextField()
+    postDescriptions = models.TextField()
     postUrl = models.TextField(blank=True)
     postImage = models.ImageField(blank=True, null=True)
 

@@ -30,7 +30,7 @@
                             <a href="{% url 'readMore' post.postId %}">
 
                                 <p  style="margin-left:120px;">
-                                    {{ post.postText |truncatewords:30 }}
+                                    {{ post.postDescriptions |truncatewords:30 }}
                                 </p>
                             </a>
 
@@ -41,15 +41,78 @@
 
 
                         </div>
-
+     
                     
 
                     </div>
+
+                  
+                    <!--button c,c++ and python-->
+
+
+           <div class="container">
+  <h2>Solutions</h2>
+
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header">
+        <a style="font-weight:bold; color:#008000;" class="card-link" data-toggle="collapse" href="#collapseOne">
+          C
+        </a>
+      </div>
+      <div id="collapseOne" class="collapse show" data-parent="#accordion">
+        <div class="card-body">
+        <p class="post">{{ post.postInC  |truncatewords:10 }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a style="font-weight:bold; color:#008000;" class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+        C++
+      </a>
+      </div>
+      <div id="collapseTwo" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+          <p class="post">{{ post.postInCplus  |truncatewords:10  }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a style="font-weight:bold; color:#008000;"  class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+          Python
+        </a>
+      </div>
+      <div id="collapseThree" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+        <p class="post">{{ post.postInPython  |truncatewords:10 }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
+       
+    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+
+
+ <!--end button c,c++ and python-->
+
+
+
+
+
+
+
                     <a class="ml-3 mt-3" href="{% url 'readMore' post.postId%}"> <span class="btn btn-success">Read More &rsaquo;</span></a>
 
 
 
+          
 
+          
 
 
 
@@ -193,6 +256,11 @@
 
 
                             <p style="margin-left:100px; margin-top:-10px;" class="description">{{ post.postTimeDate }}</p>
+
+
+
+
+
 
                             <br>
                              {% endfor %}
