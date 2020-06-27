@@ -32,3 +32,12 @@
         color:#005E90;
     
 }
+
+#readMore{
+
+	font-weight:bold; 
+	color:#008000;
+}
+#readMore:hover{
+	color: darkslategray;
+}

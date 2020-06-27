@@ -18,7 +18,9 @@ class Post(models.Model):
     postId = models.AutoField(primary_key=True, auto_created=True)
     postTitle = models.CharField(max_length=200)
     postTimeDate = models.DateTimeField(auto_now_add=True, auto_now=False, blank=True)
-    postText = models.TextField()
+    postInC = models.TextField()
+    postInCplus = models.TextField()
+    postInPython = models.TextField()
     postUrl = models.TextField(blank=True)
     postImage = models.ImageField(blank=True, null=True)
 
@@ -38,7 +40,7 @@ class Post(models.Model):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['category', 'postTitle', 'postText', 'postImage']
+        fields = ['category', 'postTitle', 'postInCplus', 'postImage']
 
 
 class Contact(models.Model):
