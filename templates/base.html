@@ -38,22 +38,23 @@ width: 90px;
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
  <div class="container">
   
- <a class="navbar-brand" href="{% url 'home' %}"><i class="fa fa-leanpub" aria-hidden="true"></i> AB</a>
+ <a class="navbar-brand" href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-     <li class="nav-item" >
-
-       <a  class="nav-link" href="{% url 'home' %}" 
-       id="{% block homeActive %}{% endblock homeActive %}"><i class="fa fa-fw fa-home"></i>Home</a>
-     
-     </li>
-      <li class="nav-item ">
+    <li class="nav-item ">
         <a class="nav-link" href="{% url 'blog' %}" id="{% block blogActive %}{% endblock blogActive %}"><i class="fa fa-fw fa-rss" aria-hidden="true"></i>Blog</a>
       </li>
+     <li class="nav-item" >
+
+       <a  class="nav-link" href="{% url 'aboutMe' %}" 
+       id="{% block aboutActive %}{% endblock aboutActive %}"><i class="fa fa-user-secret" aria-hidden="true"></i> About Me</a>
+     
+     </li>
+      
       <li class="nav-item">
        <a class="nav-link" href="{% url 'contact' %}" id="{% block contactActive %}{% endblock contactActive %}"><i class="fa fa-fw fa-envelope"></i>Contact</a>
       </li>

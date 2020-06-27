@@ -66,7 +66,11 @@ def search(request):
 
 
 def aboutMe(request):
-    return render(request, 'home/aboutMe.html')
+    Recent = Post.objects.all().order_by('-postTimeDate')[0:3]
+    cat = Category.objects.all()[0:3]
+    context = {'RecentPost': Recent,
+               'Categories': cat, }
+    return render(request, 'aboutMe.html', context)
 
 
 
