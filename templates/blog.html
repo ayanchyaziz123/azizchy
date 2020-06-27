@@ -54,11 +54,11 @@
   <div id="accordion">
     <div class="card">
       <div class="card-header">
-        <a style="font-weight:bold; color:#008000;" class="card-link" data-toggle="collapse" href="#{{post.post_title_without_space}}1">
+        <a style="font-weight:bold; color:#008000;" class="card-link" data-toggle="collapse" href="#ayan{{post.postId}}1">
           C
         </a>
       </div>
-      <div id="{{post.post_title_without_space}}1" class="collapse show" data-parent="#accordion">
+      <div id="ayan{{post.postId}}1" class="collapse show" data-parent="#accordion">
         <div class="card-body">
         <p class="post">{{ post.postInC  |truncatewords:10 }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
         </div>
@@ -66,11 +66,11 @@
     </div>
     <div class="card">
       <div class="card-header">
-        <a style="font-weight:bold; color:#008000;" class="collapsed card-link" data-toggle="collapse" href="#{{post.post_title_without_space}}2">
+        <a style="font-weight:bold; color:#008000;" class="collapsed card-link" data-toggle="collapse" href="#ayan{{post.postId}}2">
         C++
       </a>
       </div>
-      <div id="{{post.post_title_without_space}}2" class="collapse" data-parent="#accordion">
+      <div id="ayan{{post.postId}}2" class="collapse" data-parent="#accordion">
         <div class="card-body">
           <p class="post">{{ post.postInCplus  |truncatewords:10  }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
         </div>
@@ -78,11 +78,11 @@
     </div>
     <div class="card">
       <div class="card-header">
-        <a style="font-weight:bold; color:#008000;"  class="collapsed card-link" data-toggle="collapse" href="#{{post.post_title_without_space}}3">
+        <a style="font-weight:bold; color:#008000;"  class="collapsed card-link" data-toggle="collapse" href="#ayan{{post.postId}}3">
           Python
         </a>
       </div>
-      <div id="{{post.post_title_without_space}}3" class="collapse" data-parent="#accordion">
+      <div id="ayan{{post.postId}}3" class="collapse" data-parent="#accordion">
         <div class="card-body">
         <p class="post">{{ post.postInPython  |truncatewords:10 }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
        

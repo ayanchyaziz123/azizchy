@@ -19,7 +19,6 @@ class Post(models.Model):
     postAuthor = models.CharField(max_length=200)
     postId = models.AutoField(primary_key=True, auto_created=True)
     postTitle = models.CharField(max_length=200)
-    post_title_without_space = models.CharField(max_length=200)
     postTimeDate = models.DateTimeField(auto_now_add=True, auto_now=False, blank=True)
     postInC = models.TextField()
     postInCplus = models.TextField()
