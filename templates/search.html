@@ -9,7 +9,7 @@
 
 
 <div class="row ml-1 mb-1">
-    <h2 class="mb-3">Search Results</h2>
+    <h2 class="mb-3" id="heading">Search Results</h2>
 
 </div>
 
@@ -23,13 +23,18 @@
 
        {% if allPosts|length < 1 %}
 
+      <div class="card text-center mt-5 p-5">
        <h3 style="margin-top:40;">
 
-           there is no result
+           There is no result
+          
 
 
-       </h3>
+       </h3><br>
+        <span><i class="fa fa-plus-circle" aria-hidden="true"></i> search properly</span>
 
+        <a href="{ url 'blog'}"><span><i class="fa fa-plus-circle" aria-hidden="true"></i> Go to Blog Page</span></a>
+</div>
        {% else %}
 
     {% for post in allPosts %}
