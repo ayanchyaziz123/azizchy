@@ -26,6 +26,7 @@ class Post(models.Model):
     postDescriptions = models.TextField()
     postUrl = models.TextField(blank=True)
     postImage = models.ImageField(blank=True, null=True)
+    views = models.IntegerField(default=0)
 
     
 

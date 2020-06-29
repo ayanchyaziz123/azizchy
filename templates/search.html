@@ -49,7 +49,7 @@
                             <a href="{% url 'readMore' post.postId %}">
 
                                 <p  style="margin-left:100px;">
-                                    {{ post.postText |truncatewords:30 }}
+                                    {{ post.postDescriptions |truncatewords:30 }}
                                 </p>
                             </a>
 
@@ -145,9 +145,8 @@
         <div class="col-sm-3 ml-lg-5" >
 
             <!--about me-->
-
-          <div class="card text-center ">
-                    <h6>About Me</h6>
+      <div class="card text-center ">
+                    <h6 id="heading" class="mt-2">About Me</h6>
 <div class="card card-cascade">
 
   <!-- Card image -->
@@ -162,11 +161,11 @@
   <div class="card-body card-body-cascade text-center">
 
     <!-- Title -->
-    <h4 class="card-title"><strong>Azizur Rahman</strong></h4>
+    <h4 class="card-title" id="heading" ><strong>Azizur Rahman [ayan]</strong></h4>
     <!-- Subtitle -->
-    <h6 class="font-weight-bold indigo-text py-2">Student of metrpolitan University</h6>
+    <h6 class="font-weight-bold indigo-text py-2" id="heading" >Student of metrpolitan University</h6>
     <!-- Text -->
-    <p class="card-text">Right now, I am doing cse from MU
+    <p class="card-text" id="heading" >Right now, I am doing cse from MU
     </p>
 
     <!-- Facebook -->

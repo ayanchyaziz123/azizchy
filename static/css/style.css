@@ -2,6 +2,7 @@
 	font-family:bitter,georgia,"times new roman",times,serif;
 	font-weight:bold;
 	color:#2F4F4F;
+	font-style: italic
 }
 
 #heading:hover{
@@ -16,6 +17,7 @@
 .post-time{
 	color:#868686;
 	font-weight:bold;
+	font-style: italic
 }
 
 .description{
@@ -40,4 +42,23 @@
 }
 #readMore:hover{
 	color: darkslategray;
+}
+
+.post-category{
+ 
+	font-variant: petite-caps;
+
+
+}
+
+#views{
+	font-family:bitter,georgia,"times new roman",times,serif;
+	font-weight:bold;
+	color:#A9A9A9;
+
+}
+
+#views:hover{
+    color:#2F4F4F;
+    transition:all 0.4s ease-in-out;
 }

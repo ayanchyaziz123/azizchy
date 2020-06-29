@@ -24,7 +24,8 @@
                         alt="Responsive image">
  {% endif %}
                     <div class="card-body">
-                        <div class="card-title">
+                        <div class="card-title"><br>
+                        <h5 id="views"><i class="fa fa-eye" aria-hidden="true"></i> {{ post.views }} views</h5><br>
 
                             <h5 class="card-title post-title"> {{ post.postTitle }} </h5>
                             <h6 class="post-category">Category : {{post.category}}
@@ -45,8 +46,8 @@
 
 
            <div class="container">
-  <h2>Solutions</h2>
-  <p><strong>Note:</strong> <p class="post">{{ post.postDescriptions  | safe | linebreaks }}</p></p>
+
+  <p class="post d-inline "><strong>Descriptions:</strong> {{ post.postDescriptions  | safe | linebreaks }}</p><br>
   <div id="accordion">
     <div class="card">
       <div class="card-header">
@@ -109,7 +110,7 @@
     <div class="card mb-4  mt-3 ">
       <div class="card-body">
         <!-- comments -->
-        <h2>{{ comments.count }} Comments</h2>
+        <h2 id="heading">{{ comments.count }} Comments</h2>
 
 <div class="collapse" id="collapseExample">
    
@@ -125,10 +126,12 @@
 </div>
 </div>
 <!-- Comment with nested comments -->
-{% for comment in comments %}
+{% for comment in comments|dictsort:"created" %}
+
 <div class="card m-2">
    
     <div class="comment" >
+   
      <div class="card m-3 p-3">
      
          <div class="d-flex flex-row comment-row m-t-0">
@@ -142,7 +145,8 @@
                 </div>
                 
      </div>
-     
+
+ 
      <!--  add reply form -->
 
 
@@ -210,7 +214,7 @@
             <!--about me-->
 
           <div class="card text-center ">
-                    <h6>About Me</h6>
+                    <h6 id="heading" class="mt-2">About Me</h6>
 <div class="card card-cascade">
 
   <!-- Card image -->
@@ -225,11 +229,11 @@
   <div class="card-body card-body-cascade text-center">
 
     <!-- Title -->
-    <h4 class="card-title"><strong>Azizur Rahman</strong></h4>
+    <h4 class="card-title" id="heading" ><strong>Azizur Rahman [ayan]</strong></h4>
     <!-- Subtitle -->
-    <h6 class="font-weight-bold indigo-text py-2">Student of metrpolitan University</h6>
+    <h6 class="font-weight-bold indigo-text py-2" id="heading" >Student of metrpolitan University</h6>
     <!-- Text -->
-    <p class="card-text">Right now, I am doing cse from MU
+    <p class="card-text" id="heading" >Right now, I am doing cse from MU
     </p>
 
     <!-- Facebook -->

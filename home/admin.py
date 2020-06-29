@@ -14,7 +14,9 @@ class CommentAdmin(admin.ModelAdmin):
         queryset.update(active=True)
 
 
-# Register your models here.
+
+
 
 admin.site.register(Category)
-admin.site.register((Post, BlogComment))
+admin.site.register(BlogComment)
+admin.site.register(Post)

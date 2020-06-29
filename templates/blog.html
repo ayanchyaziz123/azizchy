@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block  blogActive %}active{% endblock blogActive %}
  {% block body %}
@@ -27,13 +28,14 @@
 
                             <a href="{% url 'readMore' post.postId %}">
 
-                                <p  style="margin-left:120px;">
+                                <p  style="margin-left:120px;" class="text-style">
                                     {{ post.postDescriptions |truncatewords:30 }}
                                 </p>
                             </a>
 
 
-                            <p style="margin-left:120px; margin-top:-10px;" class="description">{{ post.postTimeDate }}</p>
+                            <p style="margin-left:120px; margin-top:-10px;" class="description">{{ post.postTimeDate | naturaltime }}</p>
+               
 
                             
 
@@ -47,9 +49,10 @@
                   
                     <!--button c,c++ and python-->
 
-
+ 
            <div class="container">
-  <h2>Solutions</h2>
+           <h6 id="views"><i class="fa fa-eye" aria-hidden="true"></i> {{ post.views }} views</h6><br>
+   <p class="post d-inline "><strong>Descriptions:</strong> {{ post.postDescriptions  | safe | linebreaks  | truncatewords:30  }}<a href="{% url 'readMore' post.postId%}"> read more</a></p><br>
 
   <div id="accordion">
     <div class="card">
@@ -60,7 +63,7 @@
       </div>
       <div id="ayan{{post.postId}}1" class="collapse show" data-parent="#accordion">
         <div class="card-body">
-        <p class="post">{{ post.postInC  |truncatewords:10 }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
+        <p class="post">{{ post.postInC | safe | linebreaks  | truncatewords:30  }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
         </div>
       </div>
     </div>
@@ -72,7 +75,7 @@
       </div>
       <div id="ayan{{post.postId}}2" class="collapse" data-parent="#accordion">
         <div class="card-body">
-          <p class="post">{{ post.postInCplus  |truncatewords:10  }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
+          <p class="post">{{ post.postInCplus | safe | linebreaks  | truncatewords:30  }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
         </div>
       </div>
     </div>
@@ -84,7 +87,7 @@
       </div>
       <div id="ayan{{post.postId}}3" class="collapse" data-parent="#accordion">
         <div class="card-body">
-        <p class="post">{{ post.postInPython  |truncatewords:10 }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
+        <p class="post">{{ post.postInPython  | safe | linebreaks  | truncatewords:30  }}<a href="{% url 'readMore' post.postId%}"> read more</a></p>
        
     
         </div>
@@ -185,9 +188,8 @@
         <div class="col-sm-3 ml-lg-5" >
 
             <!--about me-->
-
-          <div class="card text-center ">
-                    <h6>About Me</h6>
+      <div class="card text-center ">
+                    <h6 id="heading" class="mt-2">About Me</h6>
 <div class="card card-cascade">
 
   <!-- Card image -->
@@ -202,11 +204,11 @@
   <div class="card-body card-body-cascade text-center">
 
     <!-- Title -->
-    <h4 class="card-title"><strong>Azizur Rahman</strong></h4>
+    <h4 class="card-title" id="heading" ><strong>Azizur Rahman [ayan]</strong></h4>
     <!-- Subtitle -->
-    <h6 class="font-weight-bold indigo-text py-2">Student of metrpolitan University</h6>
+    <h6 class="font-weight-bold indigo-text py-2" id="heading" >Student of metrpolitan University</h6>
     <!-- Text -->
-    <p class="card-text">Right now, I am doing cse from MU
+    <p class="card-text" id="heading" >Right now, I am doing cse from MU
     </p>
 
     <!-- Facebook -->

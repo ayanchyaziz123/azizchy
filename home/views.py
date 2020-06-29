@@ -60,7 +60,7 @@ def search(request):
 
     Recent = Post.objects.all().order_by('-postTimeDate')[0:4]
     query = request.GET['search']
-    allPosts = Post.objects.filter(Q(postTitle__icontains=query) | Q(postText__contains=query))
+    allPosts = Post.objects.filter(Q(postTitle__icontains=query) | Q(postDescriptions__contains=query))
     cat = Category.objects.all()[0:3]
 
    
@@ -138,6 +138,11 @@ def postComment(request):
 
 
 def post_detail(request, post):
+
+    
+    past = Post.objects.filter(postId=post).first()
+    past.views = past.views + 1
+    past.save()
     Recent = Post.objects.all().order_by('-postTimeDate')[0:3]
     cat = Category.objects.all()[0:3]
     # get post object
