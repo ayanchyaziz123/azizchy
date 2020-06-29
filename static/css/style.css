@@ -62,3 +62,8 @@
     color:#2F4F4F;
     transition:all 0.4s ease-in-out;
 }
+
+.blog-font-style{
+	font-family:bitter,georgia,"times new roman",times,serif;
+	color:#005E90;
+}

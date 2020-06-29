@@ -47,7 +47,7 @@
 
            <div class="container">
 
-  <p class="post d-inline "><strong>Descriptions:</strong> {{ post.postDescriptions  | safe | linebreaks }}</p><br>
+  <p class="post d-inline blog-font-style"><strong>Descriptions:</strong></p> <p style="font-family:bitter,georgia,"times new roman",times,serif;">{{ post.postDescriptions  | safe | linebreaks }}</p><br>
   <div id="accordion">
     <div class="card">
       <div class="card-header">
@@ -57,7 +57,7 @@
       </div>
       <div id="collapseOne" class="collapse show" data-parent="#accordion">
         <div class="card-body">
-        <p class="post">{{ post.postInC  | safe | linebreaks }}</p>
+        <p class="post" style="font-family:bitter,georgia,"times new roman",times,serif;">{{ post.postInC  | safe | linebreaks }}</p>
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
       </div>
       <div id="collapseTwo" class="collapse" data-parent="#accordion">
         <div class="card-body">
-          <p class="post">{{ post.postInCplus  | safe | linebreaks }}</p>
+          <p class="post" style="font-family:bitter,georgia,"times new roman",times,serif;">{{ post.postInCplus  | safe | linebreaks }}</p>
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@
       </div>
       <div id="collapseThree" class="collapse" data-parent="#accordion">
         <div class="card-body">
-        <p class="post">{{ post.postInPython  | safe | linebreaks }}</p>
+        <p class="post" style="font-family:bitter,georgia,"times new roman",times,serif;">{{ post.postInPython  | safe | linebreaks }}</p>
        
        
     
@@ -115,7 +115,8 @@
 <div class="collapse" id="collapseExample">
    
 <!-- Comments Form --> 
-<h2>Add a new comment</h2>
+<br>
+<h4 id="heading">Add a new comment</h4><br>
 <form action="." method="post">
     {{ comment_form.as_p }}
     <br>
@@ -198,7 +199,7 @@
     </div>
     </div>
 {% empty %}
-<h4>There are no comments yet.</h4>
+<h4 id="heading">There are no comments yet.</h4>
 {% endfor %}
 </div>
   </div>
