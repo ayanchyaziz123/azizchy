@@ -2,16 +2,13 @@
 {% load static %}
 {% load humanize %}
 
-
-
  {% block body %}
 
+<div class="container">
+  <div class="row">
 
-<!--row-1--->
-
-    <div class="row">
-
-        <!--col-1-->
+    
+   
    <div class="col-sm-8">
 
 
@@ -93,7 +90,7 @@
     </div>
   </div>
 <br>
-  <a class=" btn text-white btn-success"> <i class="fa fa-heart"></i> Like</a>
+  
   <a class=" btn text-white btn-success" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
    <i class="fa fa-comment" aria-hidden="true"></i> comment</a>
 </div>
@@ -106,118 +103,102 @@
 
        </div>
 
-       <!--comments-->
-<hr>
-       <h1>Comments({{comments.count}})</h1>
 
+    
 
-<!--comments-->
-          <div class="container">
+    <div class="card mb-4  mt-3 ">
+      <div class="card-body">
+        <!-- comments -->
+        <h2>{{ comments.count }} Comments</h2>
 
-      
-
-    <div class="collapse" id="collapseExample">  
-
-    <h2>Add a new comment</h2>
+<div class="collapse" id="collapseExample">
+   
+<!-- Comments Form --> 
+<h2>Add a new comment</h2>
 <form action="." method="post">
     {{ comment_form.as_p }}
+    <br>
     {% csrf_token %}
-    <button type="submit">Add comment</button>
+    <button type="submit" class="btn btn-success">Add comment</button>
 </form>
 </div>
-
 </div>
-	
-	<div class="card mt-5">
-
-
+</div>
+<!-- Comment with nested comments -->
+{% for comment in comments %}
+<div class="card m-2">
+   
+    <div class="comment" >
+     <div class="card m-3 p-3">
      
-
-	    <div class="card-body">
-        {% for comment in comments %}
-	        <div class="d-flex flex-row comment-row m-t-0">
-                    <div class="p-2"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1574583336/AAA/4.jpg" alt="user" width="50" class="rounded-circle"></div>
+         <div class="d-flex flex-row comment-row m-t-0">
+                    <div class="p-2"><img src="{% static 'u.jpg' %}" alt="user" width="50" class="rounded-circle"></div>
                     <div class="comment-text w-100">
-                        <h6 class="font-medium">{{comment.user.username}}</h6> <span class="m-b-15 d-block">{{comment.comment}} </span>
-                        <div class="comment-footer"> <span class="text-muted float-right">{{ comment.timestamp | naturaltime}}</span><br> <button type="button" class="btn btn-success btn-sm">Like</button> <button type="button" class="btn btn-success btn-sm"
-                        data-toggle="collapse" href="#collapseExamplee{{comment.sno}}" role="button" aria-expanded="false" aria-controls="collapseExample">Reply</button> </div>
+                        <h6 class="font-medium">{{comment.name}}</h6> <span class="m-b-15 d-block">{{comment.body|linebreaks }} </span>
+                        <div class="comment-footer"> <span class="text-muted float-right">{{ comment.created | naturaltime}}</span><br>  <button type="button" class="btn btn-success btn-sm"
+                        data-toggle="collapse" data-target="#collapseExampler{{comment.id}}" aria-expanded="false" aria-controls="collapseExample">Reply</button> </div>
                     </div>
                     
-                </div> 
+                </div>
+                
+     </div>
+     
+     <!--  add reply form -->
 
-                <!--reply-->
 
-                <div class="collapse" id="collapseExamplee{{comment.sno}}">
-  <div class="card card-body mt-3">
-    {% if user.is_authenticated %}
-      <form method="post" class="form-horizontal" action="{% url 'postComment' %}">
-      
-      {% csrf_token %} 
-  <div class="form-group">
-    <label class="control-label col-sm-2" for="email">Reply:</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="comment" name="comment" placeholder="Enter comment">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-10">
-      <input type="hidden" class="form-control" id="pwd" name="parentSno" value="{{comments.sno}}" placeholder="Enter password">
-    </div>
-  </div>
 
-  <div class="form-group">
-    <div class="col-sm-10">
-      <input type="hidden" class="form-control" id="pwd" name="postSno" value="{{post.postId}}" placeholder="Enter password">
+      <div class="collapse" id="collapseExampler{{comment.id}}">
+  <div class="card m-5 p-5">
+        <form action="." method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <!-- Hidden input for parent comment.id -->
+            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+            <input class="btn btn-success" type="submit" value="Replay">
+        </form>
+        </div>
     </div>
+    
+
+
+    <!--end reply form-->
+
+        
+
+        {% for replay in comment.replies.all %}
+        <!--show reply-->
+        <div class="card p-3 ml-5 mr-3">
+
+           
+     
+         <div class="d-flex flex-row comment-row m-t-0">
+                    <div class="p-2"><img src="{% static 'u.jpg' %}" alt="user" width="50" class="rounded-circle"></div>
+                    <div class="comment-text w-100">
+                        <h6 class="font-medium">{{replay.name}}</h6> <span class="m-b-15 d-block">{{replay.body|linebreaks }} </span>
+                        <div class="comment-footer"> <span class="text-muted float-right">{{ replay.created | naturaltime}}</span><br> 
+            
+                    </div>
+                    
+                </div>
+                
+     </div>
+
+            
+    
+
+            </div>
+            <br>
+        {% endfor %}
+
+        
+    </div>
+    </div>
+{% empty %}
+<h4>There are no comments yet.</h4>
+{% endfor %}
+</div>
   </div>
  
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-    
-      <button type="submit" class="btn btn-success">Reply</button>
-    </div>
-  </div>
-</form>
-{% else %}
-
-<p>Please Login</p>
-
-
-{%endif%}
-     
-  </div>
-</div>
-                <hr>
-                <hr>
-            	{% endfor %} 
-                </div>  
-                </div>  </div>  
-       
-
-
-
-       <!--comments end-->
-
-
-
-
-                    </div>
-
-
-
-
-       <div style="margin-top:50px;">
-
-       </div>
-
-
-
-       <!-- col-1 ending-->
-       </div>
-
-
-
-
 
 
 
@@ -346,13 +327,12 @@
 </div>
 
 </div>
+
 </div>
 
 
 
+</div>
+</div>
 
-
-
-
-
- {% endblock body %}
+{% endblock body %}
