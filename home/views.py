@@ -141,6 +141,7 @@ def post_detail(request, post):
     Recent = Post.objects.all().order_by('-postTimeDate')[0:3]
     cat = Category.objects.all()[0:3]
     # get post object
+    go_back = post
     post = get_object_or_404(Post, postId=post)
     # list of active parent comments
     comments = post.comments.filter(active=True, parent__isnull=True)
@@ -171,7 +172,7 @@ def post_detail(request, post):
             new_comment.post = post
             # save
             new_comment.save()
-            return redirect("home")
+            return HttpResponseRedirect(reverse('readMore', args=[str(go_back)]))
     else:
         comment_form = CommentForm()
     return render(request,
