@@ -133,7 +133,7 @@
    
     <div class="comment" >
    
-     <div class="card m-3 p-3">
+     <div class="card m-1 p-2">
      
          <div class="d-flex flex-row comment-row m-t-0">
                     <div class="p-2"><img src="{% static 'u.jpg' %}" alt="user" width="50" class="rounded-circle"></div>
@@ -141,6 +141,7 @@
                         <h6 class="font-medium">{{comment.name}}</h6> <span class="m-b-15 d-block">{{comment.body|linebreaks }} </span>
                         <div class="comment-footer"> <span class="text-muted float-right">{{ comment.created | naturaltime}}</span><br>  <button type="button" class="btn btn-success btn-sm"
                         data-toggle="collapse" data-target="#collapseExampler{{comment.id}}" aria-expanded="false" aria-controls="collapseExample">Reply</button> </div>
+                    
                     </div>
                     
                 </div>
@@ -153,13 +154,14 @@
 
 
       <div class="collapse" id="collapseExampler{{comment.id}}">
-  <div class="card m-5 p-5">
+  <div class="card m-3 p-2 pl-3 ml-4">
         <form action="." method="post">
             {{ comment_form.as_p }}
             {% csrf_token %}
             <!-- Hidden input for parent comment.id -->
             <input type="hidden" name="parent_id" value="{{ comment.id }}">
             <input class="btn btn-success" type="submit" value="Replay">
+            
         </form>
         </div>
     </div>
@@ -172,7 +174,7 @@
 
         {% for replay in comment.replies.all %}
         <!--show reply-->
-        <div class="card p-3 ml-5 mr-3">
+        <div class="card p-3 ml-4 mr-3 mt-3">
 
            
      
