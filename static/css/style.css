@@ -67,3 +67,15 @@
 	font-family:bitter,georgia,"times new roman",times,serif;
 	color:#005E90;
 }
+
+#ph{
+	font-family:bitter,georgia,"times new roman",times,serif;
+	font-weight:bold;
+	color:black;
+
+}
+
+#ph:hover{
+    color:#A9A9A9;
+    transition:all 0.4s ease-in-out;
+}

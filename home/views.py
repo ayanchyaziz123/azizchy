@@ -56,14 +56,17 @@ def readMore(request, slug):
 
 def search(request):
 
-    
 
     Recent = Post.objects.all().order_by('-postTimeDate')[0:4]
     query = request.GET['search']
     allPosts = Post.objects.filter(Q(postTitle__icontains=query) | Q(postDescriptions__contains=query))
     cat = Category.objects.all()[0:3]
 
-   
+
+
+    Recent = Post.objects.all().order_by('-postTimeDate')[0:3]
+
+
     parms = {'allPosts': allPosts,
              'RecentPost': Recent,
              'Categories': cat,}
@@ -187,3 +190,19 @@ def post_detail(request, post):
                    'comment_form': comment_form,
                    'RecentPost': Recent,
                'Categories': cat,})
+
+
+
+
+
+def category(request, cat):
+    Recent = Post.objects.all().order_by('-postTimeDate')[0:4]
+    query = cat
+    allPosts = Post.objects.filter(cat_search__contains=query) 
+    cat = Category.objects.all()[0:3]
+
+    parms = {'allPosts': allPosts,
+             'RecentPost': Recent,
+             'Categories': cat,}
+    return render(request, 'category.html', parms)
+    
