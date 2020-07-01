@@ -23,17 +23,23 @@
 
        {% if allPosts|length < 1 %}
 
-      <div class="card text-center mt-5 p-5">
-       <h3 style="margin-top:40;">
+      <div class="card  mt-5 p-5">
+       <h4 style="margin-top:40;">
 
-           There is no result
+          Your search -<u>{{query}}</u>- did not match any documents
           
 
+       </h4><br>
+       <div class="card ml-5 p-4">
+       <span><i class="fa fa-plus-circle" aria-hidden="true"></i> Make sure that all words are spelled correctly.</span>
+<span><i class="fa fa-plus-circle" aria-hidden="true"></i> Try different keywords.</span>
+<span><i class="fa fa-plus-circle" aria-hidden="true"></i> Try more general keywords.</span>
+ <span><i class="fa fa-plus-circle" aria-hidden="true"></i> Try fewer keywords.</span>
 
-       </h3><br>
-        <span><i class="fa fa-plus-circle" aria-hidden="true"></i> search properly</span>
+
 
         <a href="{% url 'blog' %}"><span><i class="fa fa-plus-circle" aria-hidden="true"></i> Go to Blog Page</span></a>
+</div>
 </div>
        {% else %}
 
@@ -249,7 +255,7 @@
                         <div class="mt-3 text-center">
                              {% for cat in Categories%}
 
-                            <a class="text-style" href="#"> {{cat.category}} </a><br>
+                            <a class="text-style" href="{% url 'categories' cat.cat_search}"> {{cat.category}} </a><br>
                             
 
                          

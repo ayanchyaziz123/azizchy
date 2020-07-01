@@ -79,3 +79,17 @@
     color:#A9A9A9;
     transition:all 0.4s ease-in-out;
 }
+
+.bg-success{
+
+	background-color:#5F9EA0 !important;
+
+}
+.btn-success{
+	background-color:#5F9EA0 !important;
+	border-color: #499092 !important;
+}
+.btn-success:hover{
+	background-color:#0c9294 !important;
+	
+}

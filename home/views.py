@@ -69,7 +69,8 @@ def search(request):
 
     parms = {'allPosts': allPosts,
              'RecentPost': Recent,
-             'Categories': cat,}
+             'Categories': cat,
+             'query': query}
     return render(request, 'search.html', parms)
 
 
@@ -198,7 +199,7 @@ def post_detail(request, post):
 def category(request, cat):
     Recent = Post.objects.all().order_by('-postTimeDate')[0:4]
     query = cat
-    allPosts = Post.objects.filter(cat_search__contains=query) 
+    allPosts = Post.objects.filter(category__contains=query) 
     cat = Category.objects.all()[0:3]
 
     parms = {'allPosts': allPosts,
