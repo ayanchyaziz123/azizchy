@@ -82,14 +82,14 @@
 
 .bg-success{
 
-	background-color:#5F9EA0 !important;
+	background-color:#708090 !important;
 
 }
 .btn-success{
-	background-color:#5F9EA0 !important;
-	border-color: #499092 !important;
+	background-color:#708090 !important;
+	border-color: #62768a !important;
 }
 .btn-success:hover{
-	background-color:#0c9294 !important;
+	background-color:#62768a !important;
 	
 }
