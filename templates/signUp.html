@@ -5,8 +5,14 @@
 {% block title  %} home  {% endblock title %}
 
 
+  
+
+
+
 
  {% block body %}
+
+   <h2 class="mb-1"  id="heading">Register</h2>
 
     <div class="row">
         <div class="col-sm-8">
@@ -14,7 +20,7 @@
 
 <div class="card p-5">
 
-            <h2 style="margin-bottom:18px">Register</h2>
+        
 <form method="post">{% csrf_token %}
 	{% for field in registration_form %}
 		<p>
