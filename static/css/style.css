@@ -91,5 +91,6 @@
 }
 .btn-success:hover{
 	background-color:#62768a !important;
+	border-color: #62768a !important;
 	
 }
